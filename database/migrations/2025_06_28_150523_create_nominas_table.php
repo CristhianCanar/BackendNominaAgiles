@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('nominas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->integer('dias_laborados');
+            $table->integer('horas_extras')->nullable()->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 
